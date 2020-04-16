@@ -3,9 +3,11 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 // eslint-disable-next-line no-unused-vars
 import $ from 'jquery'
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import './css/bootstrap.min.css'
+import './js/bootstrap.min'
+
+import 'wowjs/css/libs/animate.css'
 
 import './css/font-awesome.min.css'
 import './css/pe-icon-7-stroke.css'
@@ -15,7 +17,7 @@ import './css/style.css'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-Vue.use(BootstrapVue)
+// Vue.use(BootstrapVue)
 
 const routes = [
   {path: '/'}
