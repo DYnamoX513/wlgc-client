@@ -4,8 +4,8 @@ import App from './App.vue'
 // eslint-disable-next-line no-unused-vars
 import $ from 'jquery'
 
-import './css/bootstrap.min.css'
-import './js/bootstrap.min'
+import '../public/bootstrap.min.css'
+import '../public/js/bootstrap.min'
 
 import 'wowjs/css/libs/animate.css'
 
