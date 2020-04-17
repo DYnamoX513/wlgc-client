@@ -44,7 +44,7 @@ $('#home-slider').nivoSlider({
 	Home Slick Slider
 -----------------------------------*/
 /*-- Image Slider --*/
-$('.home-slick-image-slider').slick({
+$('.home-slick-img-slider').slick({
     asNavFor: '.home-slick-text-slider',
     slidesToShow: 1,
     prevArrow: '<button type="button" class="arrow-prev"><i class="fa fa-long-arrow-left"></i></button>',
@@ -63,7 +63,7 @@ $('.home-slick-image-slider').slick({
 /*-- Text Slider --*/
 $('.home-slick-text-slider').slick({
     arrows: false,
-    asNavFor: '.home-slick-image-slider',
+    asNavFor: '.home-slick-img-slider',
     slidesToShow: 1,
 });
 

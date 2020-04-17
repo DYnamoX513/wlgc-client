@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <HomePage></HomePage>
+      <header-section></header-section>
+      <router-view></router-view>
+      <footer-section></footer-section>
   </div>
 </template>
 
 <script>
-import HomePage from "@/components/HomePage";
+    import header from "@/components/header-section";
+    import footer from "@/components/footer-section"
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    'header-section': header,
+      'footer-section': footer
   }
 }
 </script>

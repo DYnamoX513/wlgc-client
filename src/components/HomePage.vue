@@ -1,129 +1,13 @@
 <template>
     <!-- Body main wrapper start -->
     <div class="wrapper">
-        <!-- START HEADER SECTION -->
-        <header class="header-section section sticker">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- logo -->
-                        <div class="header-logo float-left">
-                            <a href="home.html"><img src="img/myLogo.jpg" alt="main logo"></a>
-                        </div>
-                        <!-- header-search & total-cart -->
-                        <div class="float-right">
-                            <div class="header-option-btns float-right">
-                                <!-- header-search -->
-                                <div class="header-search float-left">
-                                    <button class="search-toggle" data-toggle="dropdown"><i class="pe-7s-search"></i></button>
-                                    <div class="dropdown-menu header-search-form">
-                                        <!--输入商品信息，点击搜索按钮跳转-->
-                                        <form action="#">
-                                            <input type="text" placeholder="Search">
-                                            <button><i class="fa fa-long-arrow-right"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- header Account -->
-                                <div class="header-account float-left">
-                                    <ul>
-                                        <li><a href="#" data-toggle="dropdown"><i class="pe-7s-config"></i></a>
-                                            <ul class="dropdown-menu">
-
-                                                <!-- 我的账户操作，跳转后台写 -->
-                                                <li><a href="#">我的账户</a></li>
-                                                <li><a href="wishlist.html">我的收藏</a></li>
-                                                <li><a href="checkout.html">支付</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- 购物车标志 -->
-                                <div class="header-cart float-left">
-                                    <!-- Cart Toggle -->
-                                    <a class="cart-toggle" href="#" data-toggle="dropdown">
-                                        <i class="pe-7s-cart"></i>
-                                        <span>2</span>
-                                    </a>
-                                    <!-- Mini Cart Brief -->
-                                    <div class="mini-cart-brief dropdown-menu text-left">
-                                        <!-- Cart Products -->
-                                        <div class="all-cart-product clearfix">
-                                            <div class="single-cart clearfix">
-                                                <div class="cart-image">
-                                                    <a href="product-details.html"><img src="../../public/img/product/cart-1.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart-info">
-                                                    <h5><a href="product-details.html">Le Parc Minotti Chair</a></h5>
-                                                    <p>1 x £9.00</p>
-                                                    <!-- 删除购物车中地商品跳转链接 -->
-                                                    <a href="#" class="cart-delete" title="Remove this item"><i class="pe-7s-trash"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="single-cart clearfix">
-                                                <div class="cart-image">
-                                                    <a href="product-details.html"><img src="../../public/img/product/cart-2.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart-info">
-                                                    <h5><a href="product-details.html">DSR Eiffel chair</a></h5>
-                                                    <p>1 x £9.00</p>
-                                                    <a href="#" class="cart-delete" title="Remove this item"><i class="pe-7s-trash"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--计算购物车中商品总额 -->
-                                        <div class="cart-totals">
-                                            <h5>总额 <span>£18.00</span></h5>
-                                        </div>
-                                        <!-- 支付 -->
-                                        <div class="cart-bottom  clearfix">
-                                            <a href="checkout.html">支付</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <nav class="main-menu menu-right float-right">
-                                <ul>
-                                    <li class="active"><a href="home.html">主页</a>
-                                        <ul class="sub-menu">
-                                            <li class="active"><a href="home.html">主页1</a></li>
-                                            <li><a href="home-2.html">主页2</a></li>
-                                            <li><a href="home-3.html">主页3</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- 跳转至商品（列表）销售界面 -->
-                                    <li><a href="shop.html">商城</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">商品购买</a></li>
-                                            <li><a href="product-details.html">商品详情</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">功能页</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="cart.html">购物车</a></li>
-                                            <li><a href="checkout.html">支付</a></li>
-
-                                            <li><a href="wishlist.html">我的收藏</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">联系我们</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="mobile-menu"></div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- END HEADER SECTION -->
-
         <!-- 放置我们商城的王牌商品，可以多个 -->
         <div class="home-slider-section section">
             <!-- Home Slider -->
             <div id="home-slider" class="slides">
                 <!-- 王牌商品的图片 -->
-                <img src="../../public/img/slider/3.jpg" alt="" title="#slider-caption-1"  />
-                <img src="../../public/img/slider/1.jpg" alt="" title="#slider-caption-2"  />
+                <img src="img/slider/3.jpg" alt="" title="#slider-caption-1"  />
+                <img src="img/slider/1.jpg" alt="" title="#slider-caption-2"  />
             </div>
             <!-- 商品 1 -->
             <div id="slider-caption-1" class="nivo-html-caption">
@@ -261,25 +145,25 @@
                                     <img src="img/product/2.jpg" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-2">
-                                    <img src="img/product/1.jpg" alt="" />
+                                    <img src="image/product/1.jpg" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-3">
-                                    <img src="img/product/3.jpg" alt="" />
+                                    <img src="image/product/3.jpg" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-4">
-                                    <img src="img/product/4.jpg" alt="" />
+                                    <img src="image/product/4.jpg" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-5">
-                                    <img src="img/product/5.jpg" alt="" />
+                                    <img src="image/product/5.jpg" alt="" />
                                 </div>
                             </div>
                             <!-- QuickView Product Thumbnail Slider -->
                             <div class="pro-thumb-img-slider">
-                                <div><a href="#pro-large-img-1" data-toggle="tab"><img src="img/product/2.jpg" alt="" /></a></div>
-                                <div><a href="#pro-large-img-2" data-toggle="tab"><img src="img/product/1.jpg" alt="" /></a></div>
-                                <div><a href="#pro-large-img-3" data-toggle="tab"><img src="img/product/3.jpg" alt="" /></a></div>
-                                <div><a href="#pro-large-img-4" data-toggle="tab"><img src="img/product/4.jpg" alt="" /></a></div>
-                                <div><a href="#pro-large-img-5" data-toggle="tab"><img src="img/product/5.jpg" alt="" /></a></div>
+                                <div><a href="#pro-large-img-1" data-toggle="tab"><img src="image/product/2.jpg" alt="" /></a></div>
+                                <div><a href="#pro-large-img-2" data-toggle="tab"><img src="image/product/1.jpg" alt="" /></a></div>
+                                <div><a href="#pro-large-img-3" data-toggle="tab"><img src="image/product/3.jpg" alt="" /></a></div>
+                                <div><a href="#pro-large-img-4" data-toggle="tab"><img src="image/product/4.jpg" alt="" /></a></div>
+                                <div><a href="#pro-large-img-5" data-toggle="tab"><img src="image/product/5.jpg" alt="" /></a></div>
                             </div>
                         </div>
                         <!-- QuickView Product Details -->
@@ -350,81 +234,6 @@
             </div>
         </div>
         <!-- QUICK VIEW MODAL END-->
-
-        <!-- FOOTER TOP SECTION START -->
-        <div class="footer-top-section section pt-100 pb-60">
-            <div class="container">
-                <div class="row">
-
-                    <!-- Footer Widget -->
-                    <div class="footer-widget col-md-4 col-sm-6 col-xs-12 mb-40">
-                        <h5 class="widget-title">ABOUT THE STORE</h5>
-                        <p>There are many variations of passages of Lor available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
-                    </div>
-
-                    <!-- Footer Widget -->
-                    <div class="footer-widget col-md-3 col-sm-6 col-xs-12 mb-40">
-                        <h5 class="widget-title">CUSTOMER SERVICE</h5>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Returns & Refunds</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">online store</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Footer Widget -->
-                    <div class="footer-widget col-md-2 col-sm-6 col-xs-12 mb-40">
-                        <h5 class="widget-title">PROFILE</h5>
-                        <ul>
-                            <li><a href="#">my Account</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">help</a></li>
-                            <li><a href="#">support</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Footer Widget -->
-                    <div class="footer-widget col-md-3 col-sm-6 col-xs-12 mb-40">
-                        <h5 class="widget-title">SIGN UP FOR OUR AWESOME NEWS</h5>
-                        <form action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="sunscribe-form validate" target="_blank" novalidate>
-                            <div id="mc_embed_signup_scroll">
-                                <label for="mce-EMAIL" class="hidden">Subscribe to our mailing list</label>
-                                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required>
-                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
-                                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                            </div>
-                        </form>
-                        <div class="footer-social fix">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- FOOTER TOP SECTION END -->
-
-        <!-- FOOTER BOTTOM SECTION START -->
-        <div class="footer-bottom-section section">
-            <div class="container">
-                <div class="row">
-                    <!-- Copyright -->
-                    <div class="copyright text-left col-sm-6 col-xs-12">
-                        <p>Powered by <a href="https://hastech.company/">HasTech</a></p>
-                    </div>
-                    <!-- Payment Method -->
-                    <div class="footer-menu text-right col-sm-6 col-xs-12">
-                        <a href="#">Help & Support</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FOOTER BOTTOM SECTION END -->
     </div>
     <!-- Body main wrapper end -->
 </template>
@@ -432,13 +241,13 @@
 <script>
     import {WOW} from 'wowjs'
     import '../../public/js/plugins'
-    import '../../public/js/ajax-mail'
+    // import '../../public/js/ajax-mail'
     import itemlist from './item-list'
 
     export default {
         name: "HomePage",
         components: {
-            'item-list': itemlist
+            'item-list': itemlist,
         },
         data () {
             return {
@@ -452,6 +261,7 @@
                         newPrice: 123,
                         oldPrice: 456,
                         rating: 4.5,
+                        ratingNumber: 1,
                     },
                     {
                         id: 2,
@@ -554,9 +364,6 @@
                 slidesToShow: 1,
             });
 
-            /*--
-                Price Range
-            -----------------------------------*/
             $('#price-range').slider({
                 range: true,
                 min: 0,
@@ -571,9 +378,6 @@
             $('.price-amount').val( '€' + $('#price-range').slider( 'values', 0 ) +
                 ' - €' + $('#price-range').slider('values', 1 ) );
 
-            /*--
-                Product Quantity
-            -----------------------------------*/
             $('.product-quantity').append('<span class="dec qtybtn"><i class="fa fa-angle-left"></i></span><span class="inc qtybtn"><i class="fa fa-angle-right"></i></span>');
             $('.qtybtn').on('click', function() {
                 var $button = $(this);
@@ -591,9 +395,6 @@
                 $button.parent().find('input').val(newVal);
             });
 
-            /*--
-                Product Slider 4 Item
-            -----------------------------------*/
             $('.product-slider-4').slick({
                 speed: 700,
                 slidesToShow: 4,
@@ -622,9 +423,6 @@
                 ]
             });
 
-            /*--
-                Product Details Thumbnail Slider
-            -----------------------------------*/
             $('.pro-thumb-img-slider').slick({
                 speed: 700,
                 slidesToShow: 4,
@@ -647,9 +445,6 @@
                 ]
             })
 
-            /*--
-                Checkout Form Collapse on Checkbox
-            -----------------------------------*/
             $('.checkout-form input[type="checkbox"]').on('click', function(){
                 var $collapse = $(this).data('target');
                 if( $(this).is(':checked') ){
@@ -659,16 +454,11 @@
                 }
             })
 
-            /*--
-                Product Filter Toggle
-            -----------------------------------*/
             $('.product-filter-toggle').on('click', function(){
                 $('.product-filter-wrapper').slideToggle();
             })
 
-            /*--
-                ScrollUp
-            -----------------------------------*/
+
             $.scrollUp({
                 scrollText: '<i class="fa fa-angle-up"></i>',
                 easingType: 'linear',
