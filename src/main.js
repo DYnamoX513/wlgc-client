@@ -18,6 +18,7 @@ import '@/css/style.css'
 import HomePage from "@/components/HomePage";
 import Contact from "@/components/Contact";
 import Login from "@/components/Login";
+import Payment from '@/components/Payment'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -26,42 +27,79 @@ Vue.use(Vuex)
 const routes = [
   {path: '/',component: HomePage},
   {path: '/contact',component: Contact},
-  {path: '/login',component: Login}
+  {path: '/login',component: Login},
+  {path: '/payment',component: Payment}
 ]
 
 const router = new VueRouter({
   routes
 })
 
+// eslint-disable-next-line no-unused-vars
+router.beforeEach((to, from, next) => {
+  let status = sessionStorage.getItem("status")
+  let login = !(status == null || status === "false")
+  store.dispatch("setLoginStatusFun", login)
+  if (login && to.path === '/login'){
+    const answer = window.confirm('确定退出吗')
+    if (answer) {
+      sessionStorage.clear()
+      store.dispatch("resetAllStorageFun")
+      next()
+    } else {
+      next(false)
+    }
+  } else {
+    next()
+  }
+})
+
 const store =new Vuex.Store({
   state:{
     login: false,
-    cart:[
-      {
-        id:1,
-        name:"dbd1",
-        img:"../../public/img/product/cart-1.jpg",
-        quantity:1,
-        price: 100
-      },
-      {
-        id:2,
-        name:"dbd2",
-        img:"../../public/img/product/2.jpg",
-        quantity:2,
-        price: 100
-      }
-    ]
+    cart:[]
   },
   mutations:{
+    setLoginStatus(state,status){
+      state.login = status
+    },
+    setCart(state,cart){
+      state.cart = cart
+    },
     deleteCart(state,id){
-      // state.cart.find(item=>item.id===id).quantity--
       state.cart.splice(state.cart.indexOf(state.cart.find(item=>item.id===id)),1)
+      sessionStorage.setItem("cart",state.cart)
+    },
+    getAllFromStorage(state){
+      let cart = sessionStorage.getItem("cart")
+      if (cart == null){
+        state.cart = []
+      }else {
+        state.cart = JSON.parse(cart)
+      }
+      let status = sessionStorage.getItem("status")
+      state.login = !(status == null || status === "false")
+    },
+    resetAllStorage(state){
+      state.cart = []
+      state.login = false
     }
   },
   actions:{
+    setLoginStatusFun(context,status){
+      context.commit("setLoginStatus",status)
+    },
+    setCartFun(context,cart){
+      context.commit("setCart",cart)
+    },
     deleteCartFun(context,id){
       context.commit("deleteCart",id)
+    },
+    getAllFromStorageFun(context){
+      context.commit("getAllFromStorage")
+    },
+    resetAllStorageFun(context){
+      context.commit("resetAllStorage")
     }
   }
 })
