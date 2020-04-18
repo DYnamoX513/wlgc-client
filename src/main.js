@@ -19,6 +19,8 @@ import HomePage from "@/components/HomePage";
 import Contact from "@/components/Contact";
 import Login from "@/components/Login";
 import Payment from '@/components/Payment'
+import Detail from '@/components/Detail'
+import Cart from '@/components/Cart'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -28,7 +30,9 @@ const routes = [
   {path: '/',component: HomePage},
   {path: '/contact',component: Contact},
   {path: '/login',component: Login},
-  {path: '/payment',component: Payment}
+  {path: '/payment',component: Payment},
+  {path: '/detail/:id',component: Detail},
+  {path: '/cart',component: Cart}
 ]
 
 const router = new VueRouter({
@@ -57,18 +61,30 @@ router.beforeEach((to, from, next) => {
 const store =new Vuex.Store({
   state:{
     login: false,
-    cart:[]
+    cart:[],
   },
   mutations:{
     setLoginStatus(state,status){
       state.login = status
     },
-    setCart(state,cart){
-      state.cart = cart
+    setCart(state){
+      sessionStorage.setItem("cart",JSON.stringify(state.cart))
+    },
+    addCart(state, newItem){
+      let exist = state.cart.find(item=>item.id === newItem.id)
+      if (!exist){
+        state.cart.push(newItem)
+      }else{
+        exist.quantity += newItem.quantity
+      }
+      sessionStorage.setItem("cart",JSON.stringify(state.cart))
+    },
+    minusCart(){
+
     },
     deleteCart(state,id){
       state.cart.splice(state.cart.indexOf(state.cart.find(item=>item.id===id)),1)
-      sessionStorage.setItem("cart",state.cart)
+      sessionStorage.setItem("cart",JSON.stringify(state.cart))
     },
     getAllFromStorage(state){
       let cart = sessionStorage.getItem("cart")
@@ -89,8 +105,11 @@ const store =new Vuex.Store({
     setLoginStatusFun(context,status){
       context.commit("setLoginStatus",status)
     },
-    setCartFun(context,cart){
-      context.commit("setCart",cart)
+    setCartFun(context){
+      context.commit("setCart")
+    },
+    addCartFun(context,newItem){
+      context.commit("addCart",newItem)
     },
     deleteCartFun(context,id){
       context.commit("deleteCart",id)

@@ -4,13 +4,13 @@
             <!-- Product Image -->
             <div class="product-img">
                 <!-- Image -->
-                <a class="image" href="product-details.html"><img :src="img" alt=""/></a>
+                <a class="image" href="#" onclick="return false" v-on:click="toDetail()"><img :src="img" alt=""/></a>
                 <!-- Wishlist Button -->
-                <a class="wishlist" href="#" title="Wishlist"><i class="pe-7s-like"></i></a>
+                <a class="wishlist" href="#" onclick="return false" title="Wishlist"><i class="pe-7s-like"></i></a>
                 <!-- Action Button -->
                 <div class="action-btn fix">
                     <a href="#" data-toggle="modal"  data-target="#quickViewModal" title="Quick View"><i class="pe-7s-look"></i>Quick view</a>
-                    <a href="#" title="Add to Cart"><i class="pe-7s-cart"></i>加入购物车</a>
+                    <a href="#" title="Add to Cart" onclick="return false" v-on:click="addCart()"><i class="pe-7s-cart"></i>加入购物车</a>
                 </div>
             </div>
             <!-- Portfolio Info -->
@@ -19,7 +19,7 @@
                 <h5 class="title"><a href="product-details.html">{{name}}</a></h5>
                 <!-- Price Ratting -->
                 <div class="price-ratting fix">
-                    <span class="price float-left"><span class="new">€{{newPrice}}</span><span v-if="oldPrice!==newPrice" class="old">€{{oldPrice}}</span></span>
+                    <span class="price float-left"><span class="new">¥{{newPrice}}</span><span v-if="oldPrice!==newPrice" class="old">¥{{oldPrice}}</span></span>
                     <span class="ratting float-right">
                         <i class="fa fa-star active" v-for="n in this.starNumber" v-bind:key="n"></i>
                         <i class="fa fa-star-half-full active" v-if="halfStar"></i>
@@ -48,6 +48,24 @@
             },
             starNumber: function () {
                 return parseInt(this.rating)
+            },
+            routerName(){
+                return '/detail/'+this.id.toString()
+            }
+        },
+        methods:{
+            toDetail(){
+                this.$router.push(this.routerName)
+            },
+            addCart(){
+                this.$store.dispatch("addCartFun",
+                    {
+                        id: this.id,
+                        name: this.name,
+                        img: this.img,
+                        quantity: 1,
+                        price: this.newPrice
+                    })
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <!-- Body main wrapper start -->
-    <div class="wrapper">
+    <div>
         <!-- 放置我们商城的王牌商品，可以多个 -->
         <div class="home-slider-section section">
             <!-- Home Slider -->
@@ -241,7 +241,6 @@
 <script>
     import {WOW} from 'wowjs'
     import '../../public/js/plugins'
-    // import '../../public/js/ajax-mail'
     import itemlist from './item-list'
 
     export default {
@@ -252,45 +251,7 @@
         data () {
             return {
                 shownType: 0,
-                itemLists: [
-                    {
-                        id: 1,
-                        name:"dbd1",
-                        type: 1,
-                        img:"img/product/1.jpg",
-                        newPrice: 123,
-                        oldPrice: 456,
-                        rating: 4.5,
-                        ratingNumber: 1,
-                    },
-                    {
-                        id: 2,
-                        name:"dbd2",
-                        type: 2,
-                        img:"img/product/2.jpg",
-                        newPrice: 123,
-                        oldPrice: 456,
-                        rating: 4,
-                    },
-                    {
-                        id: 3,
-                        name:"dbd3",
-                        type: 3,
-                        img:"img/product/3.jpg",
-                        newPrice: 123,
-                        oldPrice: 456,
-                        rating: 4,
-                    },
-                    {
-                        id: 4,
-                        name:"dbd4",
-                        type: 4,
-                        img:"img/product/4.jpg",
-                        newPrice: 123,
-                        oldPrice: 456,
-                        rating: 4,
-                    }
-                ],
+                itemLists: []
             };
         },
         computed: {
@@ -301,9 +262,50 @@
                 let shown = []
                 shown.push(this.itemLists.filter(item=>item.type===this.shownType))
                 return shown
-            }
+            },
         },
         mounted() {
+            let itemList =  [
+                {
+                    id: 1,
+                    name:"dbd1",
+                    type: 1,
+                    img:"img/product/1.jpg",
+                    newPrice: 123,
+                    oldPrice: 456,
+                    rating: 4.5,
+                    ratingNumber: 1,
+                },
+                {
+                    id: 2,
+                    name:"dbd2",
+                    type: 2,
+                    img:"img/product/2.jpg",
+                    newPrice: 123,
+                    oldPrice: 456,
+                    rating: 4,
+                },
+                {
+                    id: 3,
+                    name:"dbd3",
+                    type: 3,
+                    img:"img/product/3.jpg",
+                    newPrice: 123,
+                    oldPrice: 456,
+                    rating: 4,
+                },
+                {
+                    id: 4,
+                    name:"dbd4",
+                    type: 4,
+                    img:"img/product/4.jpg",
+                    newPrice: 123,
+                    oldPrice: 456,
+                    rating: 4,
+                }
+            ]
+            this.itemLists = itemList
+
             // 在项目加载完成之后初始化wow
             this.$nextTick(() => {
                 let wow = new WOW({
@@ -311,9 +313,9 @@
                 })
                 wow.init()
             })
-            var $window = $(window);
+            let $window = $(window);
             $window.on('scroll', function() {
-                var scroll = $window.scrollTop();
+                let scroll = $window.scrollTop();
                 if (scroll < 300) {
                     $(".sticker").removeClass("stick");
                 }else{
@@ -457,7 +459,6 @@
             $('.product-filter-toggle').on('click', function(){
                 $('.product-filter-wrapper').slideToggle();
             })
-
 
             $.scrollUp({
                 scrollText: '<i class="fa fa-angle-up"></i>',

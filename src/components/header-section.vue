@@ -60,7 +60,7 @@
                                         </div>
                                     <!--计算购物车中商品总额 -->
                                         <div class="cart-totals">
-                                        <h5>总额 <span>¥{{totalPrice}}</span></h5>
+                                        <h5>总额 <span>¥{{totalAmount}}</span></h5>
                                     </div>
                                     <!-- 支付 -->
                                         <div class="cart-bottom  clearfix">
@@ -75,9 +75,8 @@
 
                                 <li><a href="#">账户</a>
                                     <ul class="sub-menu">
-                                        <li><a href="cart.html">购物车</a></li>
+                                        <li><a href="#" onclick="return false" v-on:click="toCart()">购物车</a></li>
                                         <li><a href="#" onclick="return false" v-on:click="pay()">支付</a></li>
-                                        <li><a href="wishlist.html">我的收藏</a></li>
                                     </ul>
                                 </li>
                                 <li><router-link to="/contact">联系我们</router-link></li>
@@ -113,7 +112,7 @@
             totalNumber(){
                 return this.$store.state.cart.length
             },
-            totalPrice(){
+            totalAmount(){
                 let total = 0;
                 let length = this.$store.state.cart.length
                 for(let i=0;i< length;i++){
@@ -127,6 +126,13 @@
             deleteItem(id) {
                 if (this.login) {
                     this.$store.dispatch("deleteCartFun", id)
+                } else {
+                    this.redirectToLogin()
+                }
+            },
+            toCart(){
+                if (this.login) {
+                    this.$router.push("/cart")
                 } else {
                     this.redirectToLogin()
                 }

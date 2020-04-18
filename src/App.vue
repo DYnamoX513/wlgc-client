@@ -2,7 +2,9 @@
   <div id="app">
       <header-section></header-section>
       <transition name ="fade">
-          <router-view></router-view>
+          <div class="wrapper">
+              <router-view></router-view>
+          </div>
       </transition>
       <footer-section></footer-section>
   </div>
@@ -20,7 +22,6 @@ export default {
     },
     mounted(){
         this.$store.dispatch("getAllFromStorageFun")
-        console.log(this.$store.state.cart)
     }
 }
 </script>

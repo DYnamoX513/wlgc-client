@@ -7,7 +7,7 @@
                         <div class="page-banner-content">
                             <h1>支付</h1>
                             <ul class="breadcrumb">
-                                <li><a href="#">主页</a></li>
+                                <li>主页</li>
                                 <li class="active">支付</li>
                             </ul>
                         </div>
@@ -205,31 +205,23 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <tr v-for="item in cart" :key="item.id">
                                             <td class="product-name">
-                                                Vestibulum suscipit <strong class="product-qty"> × 1</strong>
+                                                {{item.name}}	<strong class="product-qty"> × {{item.quantity}}</strong>
                                             </td>
                                             <td class="product-total">
-                                                <span class="amount">$165.00</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-name">
-                                                Vestibulum dictum magna	<strong class="product-qty"> × 1</strong>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="amount">$50.00</span>
+                                                <span class="amount">¥{{item.price}}</span>
                                             </td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>Cart Subtotal</th>
-                                            <td>$215.00</td>
+                                            <td>¥{{totalAmount}}</td>
                                         </tr>
                                         <tr>
                                             <th>Order Total</th>
-                                            <td><strong>$215.00</strong>
+                                            <td><strong>¥{{totalAmount}}</strong>
                                             </td>
                                         </tr>
                                         </tfoot>
@@ -295,7 +287,21 @@
 
 <script>
     export default {
-        name: "Payment"
+        name: "Payment",
+        computed:{
+            cart(){
+                return this.$store.state.cart
+            },
+            totalAmount(){
+                let total = 0;
+                let length = this.$store.state.cart.length
+                for(let i=0;i< length;i++){
+                    total += parseInt(this.$store.state.cart[i].quantity)
+                        * parseFloat(this.$store.state.cart[i].price)
+                }
+                return total
+            }
+        }
     }
 </script>
 

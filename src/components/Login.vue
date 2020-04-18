@@ -122,14 +122,14 @@
                         name:"dbd1",
                         img:"../../public/img/product/cart-1.jpg",
                         quantity:1,
-                        price: 100
+                        price: 123
                     },
                     {
                         id:2,
                         name:"dbd2",
                         img:"../../public/img/product/2.jpg",
                         quantity:2,
-                        price: 100
+                        price: 123
                     }
                 ]
                 sessionStorage.setItem("cart", JSON.stringify(cart))
