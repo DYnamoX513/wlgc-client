@@ -104,6 +104,7 @@
                 phoneNumber:"",
                 password:"",
                 confirmPassword:"",
+                cart:[],
                 inputMargin:{
                     margin: '20px'
                 }
@@ -114,27 +115,93 @@
                 this.loginType = type
             },
             login(){
+                // todo: api invoke: login
+                /*
+                    send:{
+                        username:"",
+                        password:"",
+                     }
+                     response:
+                     {
+                        userId: Number (-1 = fail, others = success)
+                     }
+                 */
+
+                this.axios.post(this.$store.state.api.login,{
+                    username: this.username,
+                    password: this.password,
+                })
+                .then(response => {
+                    if (response.userId === -1){
+                        // fail
+                        alert("用户名密码错误")
+                    }else {
+                        sessionStorage.setItem("status","true")
+                        // todo: api invoke: get cart info
+                        /*
+                        send:{
+                            userId: Number
+                            }
+                        response:
+                        {
+                            cart: [
+                            {
+                                id:1,
+                                name:"dbd1",
+                                img:"../../public/img/product/cart-1.jpg",
+                                quantity:1,
+                                price: 123
+                            },
+                            {
+                                id:2,
+                                name:"dbd2",
+                                img:"../../public/img/product/2.jpg",
+                                quantity:2,
+                                price: 123
+                            }
+                            ]
+                        }
+                        */
+                        this.axios.get(this.$store.state.api.getCart,{
+                            userId: response.userId
+                        })
+                        .then(response => {
+                            this.cart = response.cart
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            this.cart = []
+                        })
+                        .finally(() => {
+                            sessionStorage.setItem("cart", JSON.stringify(this.cart))
+                            this.$store.dispatch("setCartFun",this.cart)
+                            this.$router.push('/')
+                        })
+                    }
+                })
+                .catch(error => (console.log(error)))
+
                 sessionStorage.setItem("status","true")
 
-                let cart = [
-                    {
-                        id:1,
-                        name:"dbd1",
-                        img:"../../public/img/product/cart-1.jpg",
-                        quantity:1,
-                        price: 123
-                    },
-                    {
-                        id:2,
-                        name:"dbd2",
-                        img:"../../public/img/product/2.jpg",
-                        quantity:2,
-                        price: 123
-                    }
-                ]
-                sessionStorage.setItem("cart", JSON.stringify(cart))
-                this.$store.dispatch("setCartFun",cart)
-                this.$router.push('/')
+                // let cart = [
+                //     {
+                //         id:1,
+                //         name:"dbd1",
+                //         img:"../../public/img/product/cart-1.jpg",
+                //         quantity:1,
+                //         price: 123
+                //     },
+                //     {
+                //         id:2,
+                //         name:"dbd2",
+                //         img:"../../public/img/product/2.jpg",
+                //         quantity:2,
+                //         price: 123
+                //     }
+                // ]
+                // sessionStorage.setItem("cart", JSON.stringify(cart))
+                // this.$store.dispatch("setCartFun",cart)
+                // this.$router.push('/')
             }
         }
     }

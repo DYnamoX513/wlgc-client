@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import VueAxios from "vue-axios";
 // eslint-disable-next-line no-unused-vars
 import $ from 'jquery'
 
@@ -25,6 +27,7 @@ import Cart from '@/components/Cart'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(VueAxios,axios)
 
 const routes = [
   {path: '/',component: HomePage},
@@ -62,6 +65,15 @@ const store =new Vuex.Store({
   state:{
     login: false,
     cart:[],
+    // todo: Define APIs here, usage: this.$store.state.api.
+    api:{
+      login:"",
+      register:"",
+      getItems:"",
+      itemDetail:"",
+      getCart:"",
+      updateCart:""
+    }
   },
   mutations:{
     setLoginStatus(state,status){
