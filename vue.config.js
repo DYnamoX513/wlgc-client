@@ -9,4 +9,18 @@ module.exports = {
             })
         ]
     },
+    // todo: 跨域访问设置 vue-cli3.0 axios
+    devServer:{
+        port: 8989, // vue port
+        proxy:{
+            '/api':{
+                target: 'http://127.0.0.1:8888/api',    // api base url
+                changeOrigin: true,
+                ws: true,
+                pathRewrite:{
+                    '^/api':''
+                }
+            }
+        }
+    }
 }

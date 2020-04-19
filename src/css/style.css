@@ -714,7 +714,7 @@ input:focus, textarea:focus {
 
 /*-- Page Banner Section --*/
 .page-banner-section {
-  background-image: url("../img/bg/2.jpg");
+  background-image: url("../../public/img/bg/2.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3167,7 +3167,7 @@ a.meanmenu-reveal i {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(0, 0, 0, 0) url("../img/icon/select-arrow-down.png") no-repeat scroll right 5px center;
+  background: rgba(0, 0, 0, 0) url("../../public/img/icon/select-arrow-down.png") no-repeat scroll right 5px center;
   border: 1px solid #ddd;
   height: 40px;
   padding: 7px 15px;
@@ -3319,7 +3319,7 @@ a.meanmenu-reveal i {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(0, 0, 0, 0) url("../img/icon/select-arrow-down.png") no-repeat scroll right 5px center;
+  background: rgba(0, 0, 0, 0) url("../../public/img/icon/select-arrow-down.png") no-repeat scroll right 5px center;
   border: 1px solid #ddd;
   height: 40px;
   padding: 7px 15px;
