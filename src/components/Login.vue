@@ -144,6 +144,7 @@
                         } else {
                             sessionStorage.setItem("status","true")
                             userIdParam.append('userId',response.data[0].stat)
+                            sessionStorage.setItem("userId", response.data[0].stat)
                             // todo: api invoke: get cart info
                             /*
                             send:{
