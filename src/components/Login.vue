@@ -95,6 +95,8 @@
 </template>
 
 <script>
+    import  axios from'axios'
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
     export default {
         name: "Login",
         data(){
@@ -126,60 +128,73 @@
                         userId: Number (-1 = fail, others = success)
                      }
                  */
-
-                this.axios.post(this.$store.state.api.login,{
-                    username: this.username,
-                    password: this.password,
+                var loginParam = new URLSearchParams()
+                var userIdParam = new URLSearchParams()
+                loginParam.append('user',this.username)
+                loginParam.append('password',this.password)
+                this.axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/LoginServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
+                    data: loginParam
                 })
-                .then(response => {
-                    if (response.userId === -1){
-                        // fail
-                        alert("用户名密码错误")
-                    }else {
-                        sessionStorage.setItem("status","true")
-                        // todo: api invoke: get cart info
-                        /*
-                        send:{
-                            userId: Number
-                            }
-                        response:
-                        {
-                            cart: [
+                    .then((response) => {
+                        if (response.data[0].stat === '-1'){
+                            alert("用户名密码错误")
+                        } else {
+                            sessionStorage.setItem("status","true")
+                            userIdParam.append('userId',response.data[0].stat)
+                            // todo: api invoke: get cart info
+                            /*
+                            send:{
+                                userId: Number
+                                }
+                            response:
                             {
-                                id:1,
-                                name:"dbd1",
-                                img:"../../public/img/product/cart-1.jpg",
-                                quantity:1,
-                                price: 123
-                            },
-                            {
-                                id:2,
-                                name:"dbd2",
-                                img:"../../public/img/product/2.jpg",
-                                quantity:2,
-                                price: 123
+                                cart: [
+                                {
+                                    id:1,
+                                    name:"dbd1",
+                                    img:"../../public/img/product/cart-1.jpg",
+                                    quantity:1,
+                                    price: 123
+                                },
+                                {
+                                    id:2,
+                                    name:"dbd2",
+                                    img:"../../public/img/product/2.jpg",
+                                    quantity:2,
+                                    price: 123
+                                }
+                                ]
                             }
-                            ]
+                            */
+                            this.axios({
+                                method: 'post',
+                                url: 'http://localhost:8080/MvnWeb_war/SelectCartByIDServlet',
+                                contentType: 'text',
+                                dataType: 'text/html;charset=UTF-8',
+                                data: userIdParam
+                            })
+                                .then(response => {
+                                    this.cart = response.data
+                                    console.log(this.cart)
+                                })
+                                .catch(error => {
+                                    console.log(error)
+                                    this.cart = []
+                                })
+                                .finally(() => {
+                                    sessionStorage.setItem("cart", JSON.stringify(this.cart))
+                                    this.$store.dispatch("setCartFun",this.cart)
+                                    this.$router.push('/')
+                                })
                         }
-                        */
-                        this.axios.get(this.$store.state.api.getCart,{
-                            userId: response.userId
-                        })
-                        .then(response => {
-                            this.cart = response.cart
-                        })
-                        .catch(error => {
-                            console.log(error)
-                            this.cart = []
-                        })
-                        .finally(() => {
-                            sessionStorage.setItem("cart", JSON.stringify(this.cart))
-                            this.$store.dispatch("setCartFun",this.cart)
-                            this.$router.push('/')
-                        })
-                    }
-                })
-                .catch(error => (console.log(error)))
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
 
                 sessionStorage.setItem("status","true")
 
