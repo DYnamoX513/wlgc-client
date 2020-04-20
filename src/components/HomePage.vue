@@ -265,16 +265,21 @@
             },
         },
         mounted() {
-            let itemList =  [
-                {
-                    id: 1,
+
+            // todo: api invoke: require items
+            /*
+            response:
+            {
+            items:[
+                    {
+                    id: 1,                                        --->int
                     name:"dbd1",
-                    type: 1,
+                    type: 1,                                      --->int
                     img:"img/product/1.jpg",
-                    newPrice: 123,
-                    oldPrice: 456,
-                    rating: 4.5,
-                    ratingNumber: 1,
+                    newPrice: 123,                                --->int
+                    oldPrice: 456,                                --->int
+                    rating: 4.5,                                  --->int/float
+                    ratingNumber: 1,                              --->int
                 },
                 {
                     id: 2,
@@ -303,8 +308,51 @@
                     oldPrice: 456,
                     rating: 4,
                 }
-            ]
-            this.itemLists = itemList
+                ]
+            }
+            */
+
+            // todo: api invoke: top items
+            // let itemList =  [
+            //     {
+            //         id: 1,
+            //         name:"dbd1",
+            //         type: 1,
+            //         img:"img/product/1.jpg",
+            //         newPrice: 123,
+            //         oldPrice: 456,
+            //         rating: 4.5,
+            //         ratingNumber: 1,
+            //     },
+            //     {
+            //         id: 2,
+            //         name:"dbd2",
+            //         type: 2,
+            //         img:"img/product/2.jpg",
+            //         newPrice: 123,
+            //         oldPrice: 456,
+            //         rating: 4,
+            //     },
+            //     {
+            //         id: 3,
+            //         name:"dbd3",
+            //         type: 3,
+            //         img:"img/product/3.jpg",
+            //         newPrice: 123,
+            //         oldPrice: 456,
+            //         rating: 4,
+            //     },
+            //     {
+            //         id: 4,
+            //         name:"dbd4",
+            //         type: 4,
+            //         img:"img/product/4.jpg",
+            //         newPrice: 123,
+            //         oldPrice: 456,
+            //         rating: 4,
+            //     }
+            // ]
+            // this.itemLists = itemList
 
             // 在项目加载完成之后初始化wow
             this.$nextTick(() => {
