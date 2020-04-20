@@ -28,6 +28,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAxios,axios)
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 const routes = [
   {path: '/',component: HomePage},
@@ -47,12 +48,22 @@ router.beforeEach((to, from, next) => {
   let status = sessionStorage.getItem("status")
   let login = !(status == null || status === "false")
   store.dispatch("setLoginStatusFun", login)
+
   if (login && to.path === '/login'){
     const answer = window.confirm('确定退出吗')
     if (answer) {
       sessionStorage.clear()
       store.dispatch("resetAllStorageFun")
       next()
+    } else {
+      next(false)
+    }
+  } else if ( !login && (to.path === '/Cart'|| to.path === '/payment')){
+    const answer = window.confirm('需要登录')
+    if (answer) {
+      sessionStorage.clear()
+      store.dispatch("resetAllStorageFun")
+      next('/login')
     } else {
       next(false)
     }

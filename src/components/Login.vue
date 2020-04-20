@@ -95,8 +95,6 @@
 </template>
 
 <script>
-    import  axios from'axios'
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
     export default {
         name: "Login",
         data(){
@@ -140,7 +138,7 @@
                     data: loginParam
                 })
                     .then((response) => {
-                        if (response.data[0].stat === '-1'){
+                        if (response.data[0].stat === -1){
                             alert("用户名密码错误")
                         } else {
                             sessionStorage.setItem("status","true")
