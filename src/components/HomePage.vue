@@ -1,37 +1,18 @@
 <template>
     <!-- Body main wrapper start -->
     <div>
-        <!-- 放置我们商城的王牌商品，可以多个 -->
         <div class="home-slider-section section">
             <!-- Home Slider -->
             <div id="home-slider" class="slides">
-                <!-- 王牌商品的图片 -->
-                <img src="img/slider/3.jpg" alt="" title="#slider-caption-1"  />
-                <img src="img/slider/1.jpg" alt="" title="#slider-caption-2"  />
+                <img v-for="item in topItems" :key="item.id" :src="item.img" alt="" title="#slider-caption-1"  />
             </div>
-            <!-- 商品 1 -->
-            <div id="slider-caption-1" class="nivo-html-caption">
+            <div v-for="item in topItems" :key="item.id" id="slider-caption-1" class="nivo-html-caption">
                 <div class="container">
                     <div class="row">
-                        <!-- 商品介绍 -->
                         <div class="hero-slider-content col-sm-8 col-xs-12">
-                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">王牌商品1</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
-                            <!-- 跳转至该王牌商品的商品详情页面 -->
-                            <a href="product-details.html" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 商品 2 -->
-            <div id="slider-caption-2" class="nivo-html-caption">
-                <div class="container">
-                    <div class="row">
-                        <!-- 商品介绍 -->
-                        <div class="hero-slider-content col-sm-8 col-xs-12">
-                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">王牌商品2</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
-                            <a href="product-details.html" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
+                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{item.name}}</h1>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{item.introduction}} </p>
+                            <a href="#" onclick="return false" v-on:click="toDetail(item.id)" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
                         </div>
                     </div>
                 </div>
@@ -47,10 +28,10 @@
                     <!-- Isotop Product Filter -->
                     <div class="isotope-product-filter col-xs-8">
                         <button class="active" v-on:click="shownType = 0">全部</button>
-                        <button v-on:click="shownType = 1">椅子</button>
-                        <button v-on:click="shownType = 2">桌子</button>
-                        <button v-on:click="shownType = 3">家居装饰</button>
-                        <button v-on:click="shownType = 4">台灯</button>
+                        <button v-on:click="shownType = 1">小说</button>
+                        <button v-on:click="shownType = 2">期刊杂志</button>
+                        <button v-on:click="shownType = 3">作品集</button>
+                        <button v-on:click="shownType = 4">教辅</button>
                     </div>
                     <!-- Product Filter Toggle -->
                     <div class="col-xs-4">
@@ -251,7 +232,8 @@
         data () {
             return {
                 shownType: 0,
-                itemLists: []
+                itemLists: [],
+                topItems: []
             };
         },
         computed: {
@@ -263,6 +245,14 @@
                 shown.push(this.itemLists.filter(item=>item.type===this.shownType))
                 return shown
             },
+        },
+        methods:{
+            toDetail(id){
+                if (id === -1){
+                    return
+                }
+                this.$router.push("/detail/"+id.toString())
+            }
         },
         mounted() {
 
@@ -278,7 +268,7 @@
                     img:"img/product/1.jpg",
                     newPrice: 123,                                --->int
                     oldPrice: 456,                                --->int
-                    rating: 4.5,                                  --->int/float
+                    rating: 4.5,                                  --->float
                     ratingNumber: 1,                              --->int
                 },
                 {
@@ -311,8 +301,54 @@
                 ]
             }
             */
-
+            this.axios({
+                // fixme
+                method:""
+            })
+                .then(response => {
+                    this.itemLists = response.items
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.itemLists = []
+                })
             // todo: api invoke: top items
+            /*
+            response:
+            {
+            items:[
+                    {
+                    id: 1,                                        --->int
+                    name:"dbd1",
+                    img:"img/product/1.jpg",
+                    introduction: "intro"
+                },
+                {
+                    id: 2,
+                    name:"dbd2",
+                    img:"img/product/2.jpg",
+                    introduction: "intro"
+                }
+                ]
+            }
+            */
+            this.axios({
+                // fixme
+            })
+                .then(response => {
+                    this.topItems = response.items
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.topItems = [{
+                        id: 0,
+                        name:"null",
+                        img:"img/product/1.jpg",
+                        introduction: "null"
+                    }]
+                })
+
+
             // let itemList =  [
             //     {
             //         id: 1,
