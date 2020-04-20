@@ -56,6 +56,15 @@ router.beforeEach((to, from, next) => {
     } else {
       next(false)
     }
+  } else if ( !login && (to.path === '/cart'|| to.path === 'payment')){
+    const answer = window.confirm('需要登录')
+    if (answer) {
+      sessionStorage.clear()
+      store.dispatch("resetAllStorageFun")
+      next('/login')
+    } else {
+      next(false)
+    }
   } else {
     next()
   }
