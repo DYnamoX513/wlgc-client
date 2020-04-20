@@ -187,6 +187,9 @@
                                 .finally(() => {
                                     sessionStorage.setItem("cart", JSON.stringify(this.cart))
                                     this.$store.dispatch("setCartFun",this.cart)
+                                    console.log(this.cart)
+                                    console.log(JSON.stringify(this.cart))
+                                    console.log(JSON.parse(JSON.stringify(this.cart)))
                                     this.$router.push('/')
                                 })
                         }
@@ -212,7 +215,7 @@
                 }
                  */
 
-                if (this.password !== this.confirmPassword || this.username === "" || this.phoneNumber === ""){
+                if (this.password !== this.confirmPassword || this.username === "" || this.phoneNumber === "" || this.password === ""){
                     alert("注册信息有误")
                 } else {
                     let userData = new URLSearchParams()
@@ -220,7 +223,10 @@
                     userData.append("password",this.password)
                     userData.append("phoneNumber", this.phoneNumber)
                     this.axios({
-                        // fixme
+                        method: 'post',
+                        url: 'http://localhost:8080/MvnWeb_war/RegisterServlet',
+                        contentType: 'text',
+                        dataType: 'text/html;charset=UTF-8',
                         data: userData
                     })
                         .then(response => {

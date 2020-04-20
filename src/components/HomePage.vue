@@ -302,11 +302,14 @@
             }
             */
             this.axios({
-                // fixme
-                method:""
+                method: 'post',
+                url: 'http://localhost:8080/MvnWeb_war/GetItemListServlet',
+                contentType: 'text',
+                dataType: 'text/html;charset=UTF-8'
             })
                 .then(response => {
-                    this.itemLists = response.items
+                    console.log(response.data[0].itemList)
+                    this.itemLists = response.data[0].itemList
                 })
                 .catch(error => {
                     console.log(error)

@@ -83,7 +83,7 @@ const store =new Vuex.Store({
       state.login = status
     },
     setCart(state){
-      sessionStorage.setItem("cart",JSON.stringify(state.cart))
+      state.cart = JSON.parse(sessionStorage.getItem("cart"))
     },
     addCart(state, newItem){
       let exist = state.cart.find(item=>item.id === newItem.id)
