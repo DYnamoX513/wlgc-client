@@ -28,10 +28,13 @@
                     <!-- Isotop Product Filter -->
                     <div class="isotope-product-filter col-xs-8">
                         <button class="active" v-on:click="shownType = 0">全部</button>
-                        <button v-on:click="shownType = 1">小说</button>
-                        <button v-on:click="shownType = 2">期刊杂志</button>
-                        <button v-on:click="shownType = 3">作品集</button>
-                        <button v-on:click="shownType = 4">教辅</button>
+                        <button v-on:click="shownType = 1">教育</button>
+                        <button v-on:click="shownType = 2">哲学</button>
+                        <button v-on:click="shownType = 3">科幻</button>
+                        <button v-on:click="shownType = 4">童话</button>
+                        <button v-on:click="shownType = 5">科普</button>
+                        <button v-on:click="shownType = 6">文学</button>
+                        <button v-on:click="shownType = 7">政治</button>
                     </div>
                     <!-- Product Filter Toggle -->
                     <div class="col-xs-4">
@@ -104,7 +107,7 @@
                 <!-- 加载更多的商品 -->
                 <div class="row">
                     <div class="text-center col-xs-12 mt-30">
-                        <a href="#" class="btn load-more-product">加载更多</a>
+                        <a href="#" class="btn load-more-product" v-on:click="getMore()">加载更多</a>
                     </div>
                 </div>
 
@@ -233,7 +236,8 @@
             return {
                 shownType: 0,
                 itemLists: [],
-                topItems: []
+                topItems: [],
+                currentPage:1,
             };
         },
         computed: {
@@ -252,10 +256,32 @@
                     return
                 }
                 this.$router.push("/detail/"+id.toString())
+            },
+            getMore(){
+                this.currentPage+=1;
+                var curPageParam=new URLSearchParams();
+                curPageParam.append('pageNum',this.currentPage);
+                this.axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/GetItemListServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
+                    data:curPageParam
+                })
+                    .then(response => {
+                        console.log(response.data[0].itemList)
+                        this.itemLists = response.data[0].itemList
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        this.itemLists = []
+                    })
             }
         },
         mounted() {
-
+            var curPageParam=new URLSearchParams();
+            curPageParam.append('pageNum',this.currentPage);
+            console.log(curPageParam)
             // todo: api invoke: require items
             /*
             response:
@@ -305,7 +331,8 @@
                 method: 'post',
                 url: 'http://localhost:8080/MvnWeb_war/GetItemListServlet',
                 contentType: 'text',
-                dataType: 'text/html;charset=UTF-8'
+                dataType: 'text/html;charset=UTF-8',
+                data:curPageParam
             })
                 .then(response => {
                     console.log(response.data[0].itemList)

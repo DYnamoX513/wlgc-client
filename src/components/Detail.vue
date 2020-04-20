@@ -165,11 +165,15 @@
             let itemId = new URLSearchParams()
             itemId.append("id", getId.toString())
             this.axios({
-                // fixme
+                method: 'post',
+                url: 'http://localhost:8080/MvnWeb_war/GetItemDetailServlet',
+                contentType: 'text',
+                dataType: 'text/html;charset=UTF-8',
                 data: itemId
             })
                 .then(response => {
-                    this.item = response
+                    console.log(response.data[0])
+                    this.item = response.data[0]
                 })
                 .catch(error => {
                     console.log(error)
