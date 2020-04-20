@@ -182,26 +182,6 @@
                 .catch(error => (console.log(error)))
 
                 sessionStorage.setItem("status","true")
-
-                // let cart = [
-                //     {
-                //         id:1,
-                //         name:"dbd1",
-                //         img:"../../public/img/product/cart-1.jpg",
-                //         quantity:1,
-                //         price: 123
-                //     },
-                //     {
-                //         id:2,
-                //         name:"dbd2",
-                //         img:"../../public/img/product/2.jpg",
-                //         quantity:2,
-                //         price: 123
-                //     }
-                // ]
-                // sessionStorage.setItem("cart", JSON.stringify(cart))
-                // this.$store.dispatch("setCartFun",cart)
-                // this.$router.push('/')
             }
         }
     }
