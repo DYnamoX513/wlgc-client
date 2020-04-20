@@ -96,12 +96,55 @@
                 this.$store.dispatch("deleteCartFun",id)
             },
             refreshCart(){
-                this.$store.dispatch('setCartFun')
+                // todo: api invoke: update cart
+                /*
+                send:
+                {
+                  cart: [
+                                              {
+                                                  id:1,
+                                                  name:"dbd1",
+                                                  img:"../../public/img/product/cart-1.jpg",
+                                                  quantity:1,
+                                                  price: 123
+                                              },
+                                              {
+                                                  id:2,
+                                                  name:"dbd2",
+                                                  img:"../../public/img/product/2.jpg",
+                                                  quantity:2,
+                                                  price: 123
+                                              }
+                                              ]
+                }
+                response:
+                {
+                  stat: 1 success 0 fail
+                }
+                 */
+                this.axios({
+                    // fixme
+                    data: this.cart
+                })
+                    .then(response => {
+                        if (response.data[0].stat){
+                            alert("同步成功")
+                        }else {
+                            alert("同步失败")
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                    .finally(()=>{
+                        this.$store.dispatch('setCartFun')
+                    })
             },
             toDetail(id) {
                 this.$router.push('/detail/'+ id.toString())
             }
         },
+
         // eslint-disable-next-line no-unused-vars
         beforeRouteLeave(to, from, next){
             this.$store.dispatch("setCartFun")

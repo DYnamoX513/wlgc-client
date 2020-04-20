@@ -49,12 +49,13 @@
                                    v-model="confirmPassword">
                         </div>
 
-                        <div class="col-sm-6" >
+                        <div class="col-sm-7" >
                             <p class="float-right" v-show="loginType === 1"><a href="#forget-password" data-toggle="modal">忘记密码？</a></p>
                         </div>
-
-                        <button type="button" class="btn btn-primary btn-block" style="margin-top: 40px ;margin-bottom: 30px;"
-                                v-on:click="login()"><p style="color: white">注册&nbsp;/&nbsp;登录</p></button>
+                        <button v-show="loginType === 1" type="button" class="btn btn-primary btn-block" style="margin-top: 40px ;margin-bottom: 30px;"
+                                v-on:click="login()"><p style="color: white">登录</p></button>
+                        <button v-show="loginType === 2" type="button" class="btn btn-primary btn-block" style="margin-top: 40px ;margin-bottom: 30px;"
+                                v-on:click="register()"><p style="color: white">注册</p></button>
                     </div>
                 </div>
             </div>
@@ -138,7 +139,7 @@
                     data: loginParam
                 })
                     .then((response) => {
-                        if (response.data[0].stat === -1){
+                        if (!response.data[0].stat){
                             alert("用户名密码错误")
                         } else {
                             sessionStorage.setItem("status","true")
@@ -195,6 +196,44 @@
                     })
 
                 sessionStorage.setItem("status","true")
+            },
+            register(){
+                // todo: api invoke: register
+                /*
+                send:
+                {
+                    username: "",
+                    password: "",
+                    phone: 123
+                }
+                response:
+                {
+                    stat: 1 success 0 fail
+                }
+                 */
+
+                if (this.password !== this.confirmPassword || this.username === "" || this.phoneNumber === ""){
+                    alert("注册信息有误")
+                } else {
+                    let userData = new URLSearchParams()
+                    userData.append("username",this.username)
+                    userData.append("password",this.password)
+                    userData.append("phoneNumber", this.phoneNumber)
+                    this.axios({
+                        // fixme
+                        data: userData
+                    })
+                        .then(response => {
+                            if (response.data[0].stat){
+                                sessionStorage.setItem("status","true")
+                                sessionStorage.setItem("cart", JSON.stringify([]))
+                                this.$store.dispatch("setCartFun",[])
+                                this.$router.push('/')
+                            }else {
+                                alert("注册失败")
+                            }
+                        })
+                }
             }
         }
     }

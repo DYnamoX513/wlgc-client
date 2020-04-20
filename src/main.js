@@ -77,15 +77,6 @@ const store =new Vuex.Store({
   state:{
     login: false,
     cart:[],
-    // todo: Define APIs here, usage: this.$store.state.api.
-    api:{
-      login:"",
-      register:"",
-      getItems:"",
-      itemDetail:"",
-      getCart:"",
-      updateCart:""
-    }
   },
   mutations:{
     setLoginStatus(state,status){
@@ -102,9 +93,6 @@ const store =new Vuex.Store({
         exist.quantity += newItem.quantity
       }
       sessionStorage.setItem("cart",JSON.stringify(state.cart))
-    },
-    minusCart(){
-
     },
     deleteCart(state,id){
       state.cart.splice(state.cart.indexOf(state.cart.find(item=>item.id===id)),1)
