@@ -257,7 +257,7 @@
                 return "/detail/" + this.topItems[0].id.toString()
             },
             top2ID(){
-                return "/detail/" + this.topItems[0].id.toString()
+                return "/detail/" + this.topItems[1].id.toString()
             }
         },
         methods:{
