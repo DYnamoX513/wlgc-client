@@ -4,15 +4,27 @@
         <div class="home-slider-section section">
             <!-- Home Slider -->
             <div id="home-slider" class="slides">
-                <img v-for="item in topItems" :key="item.id" :src="item.img" alt="" title="#slider-caption-1"  />
+                <img :src="topItems[0].img"  alt="" title="#slider-caption-1"  />
+                <img :src="topItems[1].img"  alt="" title="#slider-caption-2"  />
             </div>
-            <div v-for="item in topItems" :key="item.id" id="slider-caption-1" class="nivo-html-caption">
+            <div id="slider-caption-1" class="nivo-html-caption">
                 <div class="container">
                     <div class="row">
                         <div class="hero-slider-content col-sm-8 col-xs-12">
-                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{item.name}}</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{item.introduction}} </p>
-                            <a href="#" onclick="return false" v-on:click="toDetail(item.id)" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
+                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[0].name}}</h1>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[0].introduction}} </p>
+                            <router-link :to=top1ID class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="slider-caption-2" class="nivo-html-caption">
+                <div class="container">
+                    <div class="row">
+                        <div class="hero-slider-content col-sm-8 col-xs-12">
+                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[1].name}}</h1>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[1].introduction}} </p>
+                            <router-link :to=top2ID class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</router-link>
                         </div>
                     </div>
                 </div>
@@ -98,8 +110,6 @@
 
                 <div class="isotope-grid row">
                     <item-list v-for="item in shownItems" :key="item.id" v-bind="item" ></item-list>
-                    <!-- Product Item Start -->
-                    <!-- Product Item End -->
                 </div>
                 <!-- 加载更多的商品 -->
                 <div class="row">
@@ -241,18 +251,39 @@
                 if(this.shownType===0){
                     return this.itemLists
                 }
-                let shown = []
-                shown.push(this.itemLists.filter(item=>item.type===this.shownType))
-                return shown
+                return this.itemLists.filter(item => item.type === this.shownType)
             },
+            top1ID(){
+                return "/detail/" + this.topItems[0].id.toString()
+            },
+            top2ID(){
+                return this.topItems[0].id
+            }
         },
         methods:{
             toDetail(id){
+                console.log(1)
                 if (id === -1){
                     return
                 }
                 this.$router.push("/detail/"+id.toString())
             }
+        },
+        created(){
+          this.topItems=[
+              {
+                  id: 0,
+                  name:"null",
+                  img:"img/slider/3.jpg",
+                  introduction: "null"
+              },
+              {
+                  id: 1,
+                  name:"null",
+                  img:"img/slider/3.jpg",
+                  introduction: "null"
+              }
+          ]
         },
         mounted() {
 
@@ -340,15 +371,21 @@
                 })
                 .catch(error => {
                     console.log(error)
-                    this.topItems = [{
-                        id: 0,
-                        name:"null",
-                        img:"img/product/1.jpg",
-                        introduction: "null"
-                    }]
+                    this.topItems=[
+                        {
+                            id: 1,
+                            name:"null2",
+                            img:"img/slider/3.jpg",
+                            introduction: "null2"
+                        },
+                        {
+                            id: 2,
+                            name:"null2",
+                            img:"img/slider/3.jpg",
+                            introduction: "null2"
+                        }
+                    ]
                 })
-
-
             // let itemList =  [
             //     {
             //         id: 1,

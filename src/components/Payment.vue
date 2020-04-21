@@ -313,7 +313,7 @@
                 })
                     .then(response => {
                         if (response.data[0].stat){
-                            sessionStorage.setItem("cart",JSON.stringify('[]'))
+                            sessionStorage.setItem("cart",JSON.stringify([]))
                             this.$store.dispatch("setCartFun")
                             const answer = window.confirm('支付成功，是否返回主页面')
                             if (answer) {

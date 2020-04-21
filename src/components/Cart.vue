@@ -57,7 +57,7 @@
                                 </table>
                                 <!-- 进入结算后跳转界面 -->
                                 <div class="proceed-to-checkout section mt-30">
-                                    <a href="#">进入结算</a>
+                                    <a href="#" onclick="return false" v-on:click="pay()">进入结算</a>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,10 @@
             },
             toDetail(id) {
                 this.$router.push('/detail/'+ id.toString())
-            }
+            },
+            pay() {
+                this.$router.push("/payment")
+            },
         },
 
         // eslint-disable-next-line no-unused-vars

@@ -7,7 +7,7 @@
                 <!-- Footer Widget -->
                 <div class="footer-widget col-md-4 col-sm-6 col-xs-12 mb-40">
                     <h5 class="widget-title">ABOUT THE STORE</h5>
-                    <p>There are many variations of passages of Lor available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
+                    <p>Vue是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</p>
                 </div>
 
                 <!-- Footer Widget -->
@@ -35,7 +35,7 @@
                 <!-- Footer Widget -->
                 <div class="footer-widget col-md-3 col-sm-6 col-xs-12 mb-40">
                     <h5 class="widget-title">SIGN UP FOR OUR AWESOME NEWS</h5>
-                    <form action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="sunscribe-form validate" target="_blank" novalidate>
+                    <form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="sunscribe-form validate" target="_blank" novalidate>
                         <div id="mc_embed_signup_scroll">
                             <label for="mce-EMAIL" class="hidden">Subscribe to our mailing list</label>
                             <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required>
@@ -61,7 +61,7 @@
             <div class="row">
                 <!-- Copyright -->
                 <div class="copyright text-left col-sm-6 col-xs-12">
-                    <p>Powered by <a href="https://hastech.company/">HasTech</a></p>
+                    <p>Powered by Vue & Bootstrap</p>
                 </div>
                 <!-- Payment Method -->
                 <div class="footer-menu text-right col-sm-6 col-xs-12">
