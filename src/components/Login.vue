@@ -145,7 +145,6 @@
                             sessionStorage.setItem("status","true")
                             sessionStorage.setItem("userId",response.data[0].stat)
                             userIdParam.append('userId',response.data[0].stat)
-                            sessionStorage.setItem("userId", response.data[0].stat)
                             // todo: api invoke: get cart info
                             /*
                             send:{
@@ -180,7 +179,6 @@
                             })
                                 .then(response => {
                                     this.cart = response.data
-                                    console.log(this.cart)
                                 })
                                 .catch(error => {
                                     console.log(error)
@@ -189,9 +187,6 @@
                                 .finally(() => {
                                     sessionStorage.setItem("cart", JSON.stringify(this.cart))
                                     this.$store.dispatch("setCartFun",this.cart)
-                                    console.log(this.cart)
-                                    console.log(JSON.stringify(this.cart))
-                                    console.log(JSON.parse(JSON.stringify(this.cart)))
                                     this.$router.push('/')
                                 })
                         }
