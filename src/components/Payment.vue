@@ -306,7 +306,6 @@
             pay(){
                 let payData = new URLSearchParams()
                 payData.append("userId",sessionStorage.getItem("userId"))
-                //payData.append("cart",JSON.stringify(this.cart))
                 this.axios({
                     method: 'post',
                     url: 'http://localhost:8080/MvnWeb_war/DeleteCartServlet',

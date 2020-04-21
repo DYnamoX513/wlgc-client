@@ -4,8 +4,8 @@
         <div class="home-slider-section section">
             <!-- Home Slider -->
             <div id="home-slider" class="slides">
-                <img :src="topItems[0].img"   alt="" title="#slider-caption-1"  />
-                <img :src="topItems[1].img"   alt="" title="#slider-caption-2"  />
+                <img :src="topItems[0].img"  alt="" title="#slider-caption-1"  />
+                <img :src="topItems[1].img"  alt="" title="#slider-caption-2"  />
             </div>
             <div id="slider-caption-1" class="nivo-html-caption">
                 <div class="container">
@@ -113,8 +113,6 @@
 
                 <div class="isotope-grid row">
                     <item-list v-for="item in shownItems" :key="item.id" v-bind="item" ></item-list>
-                    <!-- Product Item Start -->
-                    <!-- Product Item End -->
                 </div>
                 <!-- 加载更多的商品 -->
                 <div class="row">
@@ -268,7 +266,6 @@
         },
         methods:{
             toDetail(id){
-                console.log("段桑爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬")
                 if (id === -1){
                     return
                 }
@@ -407,15 +404,21 @@
                 })
                 .catch(error => {
                     console.log(error)
-                    this.topItems = [{
-                        id: 0,
-                        name:"null",
-                        img:"img/product/1.jpg",
-                        introduction: "null"
-                    }]
+                    this.topItems=[
+                        {
+                            id: 1,
+                            name:"null2",
+                            img:"img/slider/3.jpg",
+                            introduction: "null2"
+                        },
+                        {
+                            id: 2,
+                            name:"null2",
+                            img:"img/slider/3.jpg",
+                            introduction: "null2"
+                        }
+                    ]
                 })
-
-
             // let itemList =  [
             //     {
             //         id: 1,
