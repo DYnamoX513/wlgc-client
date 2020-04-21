@@ -57,7 +57,7 @@
                                 </table>
                                 <!-- 进入结算后跳转界面 -->
                                 <div class="proceed-to-checkout section mt-30">
-                                    <a href="#">进入结算</a>
+                                    <a href="#" onclick="return false" v-on:click="pay()">进入结算</a>
                                 </div>
                             </div>
                         </div>
@@ -122,9 +122,16 @@
                   stat: 1 success 0 fail
                 }
                  */
+                var cartParam = new URLSearchParams()
+                var userId = sessionStorage.getItem('userId')
+                cartParam.append('userId',userId)
+                cartParam.append('cart',JSON.stringify(this.cart))
                 this.axios({
-                    // fixme
-                    data: this.cart
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/AddCartServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
+                    data: cartParam,
                 })
                     .then(response => {
                         if (response.data[0].stat){
@@ -142,6 +149,9 @@
             },
             toDetail(id) {
                 this.$router.push('/detail/'+ id.toString())
+            },
+            pay() {
+                this.$router.push("/payment")
             }
         },
 

@@ -4,15 +4,27 @@
         <div class="home-slider-section section">
             <!-- Home Slider -->
             <div id="home-slider" class="slides">
-                <img v-for="item in topItems" :key="item.id" :src="item.img" alt="" title="#slider-caption-1"  />
+                <img :src="topItems[0].img"   alt="" title="#slider-caption-1"  />
+                <img :src="topItems[1].img"   alt="" title="#slider-caption-2"  />
             </div>
-            <div v-for="item in topItems" :key="item.id" id="slider-caption-1" class="nivo-html-caption">
+            <div id="slider-caption-1" class="nivo-html-caption">
                 <div class="container">
                     <div class="row">
                         <div class="hero-slider-content col-sm-8 col-xs-12">
-                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{item.name}}</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{item.introduction}} </p>
-                            <a href="#" onclick="return false" v-on:click="toDetail(item.id)" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
+                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[0].name}}</h1>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[0].introduction}} </p>
+                            <a href="#" onclick="return false" v-on:click="toDetail(topItems[0].id)" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="slider-caption-2" class="nivo-html-caption">
+                <div class="container">
+                    <div class="row">
+                        <div class="hero-slider-content col-sm-8 col-xs-12">
+                            <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[1].name}}</h1>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[1].introduction}} </p>
+                            <a href="#" onclick="return false" v-on:click="toDetail(topItems[1].id)" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</a>
                         </div>
                     </div>
                 </div>
@@ -245,13 +257,12 @@
                 if(this.shownType===0){
                     return this.itemLists
                 }
-                let shown = []
-                shown.push(this.itemLists.filter(item=>item.type===this.shownType))
-                return shown
+                return this.itemLists.filter(item => item.type === this.shownType)
             },
         },
         methods:{
             toDetail(id){
+                console.log("段桑爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬爬")
                 if (id === -1){
                     return
                 }
@@ -278,6 +289,23 @@
                     })
             }
         },
+        created(){
+            this.topItems=[
+                {
+                    id: 5,
+                    name:"《吸血怎么说》",
+                    img:"http://localhost:8080/MvnWeb_war/imgs/topitem1.png",
+                    introduction: "这个小青年你搞不清楚你天天就跟就跟干什么一样上网搞个东西就跟打仗一样的干什么呢，对不起在下18岁就出来闯江湖了，闯了10几年，唉什么东西没见过什么事情没见过"
+                },
+                {
+                    id: 0,
+                    name:"null",
+                    img:"img/slider/3.jpg",
+                    introduction: "null"
+                }
+            ]
+        },
+
         mounted() {
             var curPageParam=new URLSearchParams();
             curPageParam.append('pageNum',this.currentPage);
@@ -335,7 +363,6 @@
                 data:curPageParam
             })
                 .then(response => {
-                    console.log(response.data[0].itemList)
                     this.itemLists = response.data[0].itemList
                 })
                 .catch(error => {
@@ -363,10 +390,14 @@
             }
             */
             this.axios({
-                // fixme
+                method: 'post',
+                url: 'http://localhost:8080/MvnWeb_war/GetTopItemServlet',
+                contentType: 'text',
+                dataType: 'text/html;charset=UTF-8'
             })
                 .then(response => {
-                    this.topItems = response.items
+                    this.topItems = response.data[0].itemList
+                    console.log(this.topItems)
                 })
                 .catch(error => {
                     console.log(error)

@@ -143,6 +143,7 @@
                             alert("用户名密码错误")
                         } else {
                             sessionStorage.setItem("status","true")
+                            sessionStorage.setItem("userId",response.data[0].stat)
                             userIdParam.append('userId',response.data[0].stat)
                             // todo: api invoke: get cart info
                             /*

@@ -16,7 +16,7 @@
             <!-- Portfolio Info -->
             <div class="product-info text-left">
                 <!-- Title -->
-                <h5 class="title"><a href="product-details.html">{{name}}</a></h5>
+                <h5 class="title"><a href="#" onclick="return false" v-on:click="toDetail()">{{name}}</a></h5>
                 <!-- Price Ratting -->
                 <div class="price-ratting fix">
                     <span class="price float-left"><span class="new">¥{{newPrice}}</span><span v-if="oldPrice!==newPrice" class="old">¥{{oldPrice}}</span></span>
@@ -72,5 +72,8 @@
 </script>
 
 <style scoped>
-
+    .product-img img{
+        width: 300px;
+        height: 250px;
+    }
 </style>

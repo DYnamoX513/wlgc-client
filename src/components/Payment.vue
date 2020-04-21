@@ -273,7 +273,7 @@
                                         </div>
                                     </div>
                                     <div class="order-button">
-                                        <input type="submit" value="Place order" />
+                                        <input type="submit" value="Place order" v-on:click="pay()"/>
                                     </div>
                                 </div>
                             </div>
@@ -300,6 +300,38 @@
                         * parseFloat(this.$store.state.cart[i].price)
                 }
                 return total
+            }
+        },
+        methods:{
+            pay(){
+                let payData = new URLSearchParams()
+                payData.append("userId",sessionStorage.getItem("userId"))
+                //payData.append("cart",JSON.stringify(this.cart))
+                this.axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/DeleteCartServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
+                    data: payData
+                })
+                    .then(response => {
+                        console.log(response)
+                        if (response.data[0].stat){
+                            sessionStorage.setItem("cart",JSON.stringify([]))
+                            this.$store.dispatch("setCartFun")
+                            const answer = window.confirm('支付成功，是否返回主页面')
+                            if (answer) {
+                                this.$router.push('/')
+                            }
+                        }else{
+                            alert("支付失败")
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        alert("支付失败")
+                    })
+
             }
         }
     }
