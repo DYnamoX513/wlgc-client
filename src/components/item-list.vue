@@ -9,7 +9,7 @@
                 <a class="wishlist" href="#" onclick="return false" title="Wishlist"><i class="pe-7s-like"></i></a>
                 <!-- Action Button -->
                 <div class="action-btn fix">
-                    <a href="#" data-toggle="modal"  data-target="#quickViewModal" title="Quick View"><i class="pe-7s-look"></i>Quick view</a>
+                    <a href="#" title="Quick View" onclick="return false"><i class="pe-7s-look"></i>Quick view</a>
                     <a href="#" title="Add to Cart" onclick="return false" v-on:click="addCart()"><i class="pe-7s-cart"></i>加入购物车</a>
                 </div>
             </div>
