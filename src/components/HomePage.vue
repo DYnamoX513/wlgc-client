@@ -119,7 +119,7 @@
                 <!-- 加载更多的商品 -->
                 <div class="row">
                     <div class="text-center col-xs-12 mt-30">
-                        <a href="#" class="btn load-more-product" v-on:click="getMore()">加载更多</a>
+                        <a href="#" class="btn load-more-product" onclick="return false" v-on:click="getMore()">加载更多</a>
                     </div>
                 </div>
 
