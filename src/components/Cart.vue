@@ -122,9 +122,16 @@
                   stat: 1 success 0 fail
                 }
                  */
+                var cartParam = new URLSearchParams()
+                var userId = sessionStorage.getItem('userId')
+                cartParam.append('userId',userId)
+                cartParam.append('cart',JSON.stringify(this.cart))
                 this.axios({
-                    // fixme
-                    data: this.cart
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/AddCartServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
+                    data: cartParam,
                 })
                     .then(response => {
                         if (response.data[0].stat){
@@ -145,7 +152,7 @@
             },
             pay() {
                 this.$router.push("/payment")
-            },
+            }
         },
 
         // eslint-disable-next-line no-unused-vars

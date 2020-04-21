@@ -72,10 +72,8 @@
 </script>
 
 <style scoped>
-.product-img img{
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
+    .product-img img{
+        width: 300px;
+        height: 250px;
+    }
 </style>

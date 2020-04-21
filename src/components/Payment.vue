@@ -306,12 +306,15 @@
             pay(){
                 let payData = new URLSearchParams()
                 payData.append("userId",sessionStorage.getItem("userId"))
-                payData.append("cart",JSON.stringify(this.cart))
                 this.axios({
-                    // fixme
+                    method: 'post',
+                    url: 'http://localhost:8080/MvnWeb_war/DeleteCartServlet',
+                    contentType: 'text',
+                    dataType: 'text/html;charset=UTF-8',
                     data: payData
                 })
                     .then(response => {
+                        console.log(response)
                         if (response.data[0].stat){
                             sessionStorage.setItem("cart",JSON.stringify([]))
                             this.$store.dispatch("setCartFun")

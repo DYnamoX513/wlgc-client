@@ -143,8 +143,8 @@
                             alert("用户名密码错误")
                         } else {
                             sessionStorage.setItem("status","true")
+                            sessionStorage.setItem("userId",response.data[0].stat)
                             userIdParam.append('userId',response.data[0].stat)
-                            sessionStorage.setItem("userId", response.data[0].stat)
                             // todo: api invoke: get cart info
                             /*
                             send:{
@@ -179,7 +179,6 @@
                             })
                                 .then(response => {
                                     this.cart = response.data
-                                    console.log(this.cart)
                                 })
                                 .catch(error => {
                                     console.log(error)
@@ -213,7 +212,7 @@
                 }
                  */
 
-                if (this.password !== this.confirmPassword || this.username === "" || this.phoneNumber === ""){
+                if (this.password !== this.confirmPassword || this.username === "" || this.phoneNumber === "" || this.password === ""){
                     alert("注册信息有误")
                 } else {
                     let userData = new URLSearchParams()
@@ -221,7 +220,10 @@
                     userData.append("password",this.password)
                     userData.append("phoneNumber", this.phoneNumber)
                     this.axios({
-                        // fixme
+                        method: 'post',
+                        url: 'http://localhost:8080/MvnWeb_war/RegisterServlet',
+                        contentType: 'text',
+                        dataType: 'text/html;charset=UTF-8',
                         data: userData
                     })
                         .then(response => {
