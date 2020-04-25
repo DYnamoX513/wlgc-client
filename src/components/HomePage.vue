@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="hero-slider-content col-sm-8 col-xs-12">
                             <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[0].name}}</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[0].introduction}} </p>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="color: black">{{topItems[0].introduction}} </p>
                             <router-link :to=top1ID class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</router-link>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="hero-slider-content col-sm-8 col-xs-12">
                             <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">{{topItems[1].name}}</h1>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">{{topItems[1].introduction}} </p>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="color: black">{{topItems[1].introduction}} </p>
                             <router-link :to=top2ID class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">现在购买</router-link>
                         </div>
                     </div>
